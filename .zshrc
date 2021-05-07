@@ -1,18 +1,51 @@
+eval "$(direnv hook zsh)"
+alias proxy="export HTTP_USER=azt251304 && export HTTP_PASSWORD=Q!w2e3r4t5y6u7i8 && export HTTPS_PROXY=th000-surf.zone3.proxy.allianz:8080 && export NO_PROXY=.allianz,localhost && export HTTP_PROXY=th000-surf.zone3.proxy.allianz:8080"
+alias unsetproxy="unset HTTPS_PROXY && unset HTTP_PROXY"
+alias aws-terraform="export AWS_DEFAULT_PROFILE=terraform"
+alias aws-hxl-uat="export AWS_DEFAULT_PROFILE=hxl-eks-uat"
+alias kube="kubectl"
+alias tf="terraform"
+alias aws-hxl-prod="export AWS_DEFAULT_PROFILE=hxl-eks-prod"
+alias aws-hxldev="export AWS_DEFAULT_PROFILE=hxl-eks"
+alias aws-terraform-prod="export AWS_DEFAULT_PROFILE=terraform-prod"
+alias tg="terragrunt"
+export PAT="e766709d39b9734eb7ff6d136049f70aacdd3871"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/raksitman/.oh-my-zsh"
+export ZSH="/Users/chansut/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
+ZSH_THEME="spaceship"
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  golang        # Go section
+  docker        # Docker section
+  aws           # Amazon Web Services section
+  kubectl       # Kubectl context section
+  terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  char          # Prompt character
+)
+SPACESHIP_KUBECTL_VERSION_SHOW=false
+SPACESHIP_KUBECTL_SHOW=true
+export ADP_2FA_USER=chan.suttichujit@allianz.com
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -33,7 +66,7 @@ ZSH_THEME="spaceship"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -45,6 +78,8 @@ ZSH_THEME="spaceship"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -64,18 +99,17 @@ ZSH_THEME="spaceship"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
-
 # User configuration
-export http_proxy=<your-proxy-goes-here>
-export https_proxy=<your-proxy-goes-here>
-export all_proxy=<your-proxy-goes-here>
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -99,32 +133,6 @@ export all_proxy=<your-proxy-goes-here>
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/raksitman/Desktop/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/raksitman/Desktop/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/raksitman/Desktop/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/raksitman/Desktop/google-cloud-sdk/completion.zsh.inc'; fi
-
-SPACESHIP_KUBECTL_SHOW=true
-
-# Java configuration
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
-
-# default to Java 11
-java11
-
-# Python configuration
-if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# Node.js configuration
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Ruby configuration
-eval "$(rbenv init -)"
+source /
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /Users/chansut/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
